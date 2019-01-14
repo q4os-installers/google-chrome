@@ -1,0 +1,34 @@
+#!/bin/sh -e
+
+if [ "$1" = remove ] ; then
+
+  # remove records from unattended updates
+  echo "Remove records from unattended updates"
+  ( sed -i '/Google/d' /etc/apt/apt.conf.d/50unattended-upgrades )  && true
+
+  # remove possible google-chrome repos
+  echo "Remove possible google-chrome repos"
+  rm -f /etc/apt/sources.list.d/google-chrome.list #it will be refreshed by google-chrome package using cron.daily, if it is not uninstalled too
+#   rm -f /etc/apt/sources.list.d/80_google-chrome.list
+
+  # enable chrome to re-create repos file in sources.list.d after new install
+  echo "Enable chrome to re-create repos file in sources.list.d after new install"
+  ( sed -i -e 's/[[:space:]]*repo_add_once=.*/repo_add_once="true"/' /etc/default/google-chrome )  && true
+
+  #remove diversions
+  echo "Remove diversions"
+  dpkg-divert --rename --remove /opt/google/chrome/google-chrome
+  dpkg-divert --rename --remove /opt/google/chrome-beta/google-chrome-beta
+  dpkg-divert --rename --remove /opt/google/chrome-unstable/google-chrome-unstable
+
+  #remove chrome as default tde browser
+  echo "Unsetting Google Chrome default web browser ..."
+  ( /opt/trinity/bin/kwriteconfig --file '/etc/trinity/kdeglobals' --group 'General' --key 'BrowserApplication' '' )  && true
+  ( chmod a+r /etc/trinity/kdeglobals )  && true
+
+#   #remove menu and desktop entries
+#   echo "Removing menu and desktop entries ..."
+#   ( rm -f /usr/share/apps/q4os_system/q4os_menus_applications_merged/q4os-chrome_q4app.menu )  && true
+#   ( rm -f /opt/trinity/share/apps/kdesktop/Desktop/q4os-chrome_q4dsk.desktop )  && true
+
+fi

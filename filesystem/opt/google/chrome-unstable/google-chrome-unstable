@@ -1,0 +1,5 @@
+#!/bin/bash
+#note: bash interpreter has to be here, see google-chrome.q4diverted
+export CHROME_REAL_EXEC="/opt/google/chrome-unstable/google-chrome-unstable.q4diverted"
+. /opt/program_files/q4os-chrome/bin/google-chrome_wrapper.source
+. $CHROME_REAL_EXEC

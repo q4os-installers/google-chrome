@@ -1,0 +1,5 @@
+{
+  "browser": {
+    "enabled_labs_experiments":["enable-native-window-nav-buttons@2"]
+  }
+}

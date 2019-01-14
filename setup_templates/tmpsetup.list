@@ -1,0 +1,2 @@
+deb [ trusted=yes arch=amd64 ] http://q4os.org/qextrepo stretch-chrome-cn main
+deb [ trusted=yes arch=amd64 ] http://dl.google.com/linux/chrome/deb/ stable main
