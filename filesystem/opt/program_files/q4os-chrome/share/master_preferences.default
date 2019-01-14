@@ -1,0 +1,30 @@
+{
+  "browser": {
+     "check_default_browser": false,
+     "custom_chrome_frame": true,
+     "show_home_button": true
+  },
+  "download": {
+     "prompt_for_download": true
+  },
+  "extensions": {
+     "theme": {
+        "use_system": true
+     }
+  },
+  "webkit": {
+     "webprefs": {
+        "fonts": {
+           "sansserif": {
+              "Zyyy": "Sans"
+           },
+           "serif": {
+              "Zyyy": "Serif"
+           },
+           "standard": {
+              "Zyyy": "Sans"
+           }
+        }
+     }
+  }
+}

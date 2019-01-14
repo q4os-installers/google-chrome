@@ -1,0 +1,70 @@
+#- do not use interpreter here, as this file must be sourced -##!/bin/bash
+
+#if run under TDE
+if [ "$QDSK_SESSION" = "trinity" ] ; then
+
+  #xdg config home
+  F_USR_XDG_CFG_TDE="$( dash /usr/share/apps/q4os_system/bin/print_xdgcfghome_tde.sh )"
+  if [ -z "$F_USR_XDG_CFG_TDE" ] ; then
+    F_USR_XDG_CFG_TDE="$HOME/.config" #remove later as not needed
+  fi
+
+  #exports
+  export CHROME_CFGDIR="$F_USR_XDG_CFG_TDE/google-chrome"
+  if [ "$CHROME_REAL_EXEC" = "/opt/google/chrome-beta/google-chrome-beta.q4diverted" ] ; then
+    export CHROME_CFGDIR="$F_USR_XDG_CFG_TDE/google-chrome-beta"
+  fi
+  if [ "$CHROME_REAL_EXEC" = "/opt/google/chrome-unstable/google-chrome-unstable.q4diverted" ] ; then
+    export CHROME_CFGDIR="$F_USR_XDG_CFG_TDE/google-chrome-unstable"
+  fi
+
+  if [ ! -f "$CHROME_CFGDIR/Default/Preferences" ] ; then
+    #first run, so make a new configuration
+    mkdir -p "$CHROME_CFGDIR/Default"
+
+    #workaround for chrome to not show first-run dialog ; do it cleaner way
+    cp /opt/program_files/q4os-chrome/share/local_state.default "$CHROME_CFGDIR/Local State"
+
+    # cp /opt/program_files/q4os-chrome/share/master_preferences.default "$CHROME_CFGDIR/Default/Preferences"
+    # sed -i "s:username_homedir_substitute:$HOME:" $CHROME_CFGDIR/Default/Preferences
+    # touch "$CHROME_CFGDIR/First Run" #skip first-run tasks
+
+    # q4hw-info --vboxguest
+    # if [ "$?" = "0" ] ; then
+    #   kdialog --title "Google Chrome" --caption "Bug warning" --icon "google-chrome" --msgbox "<p>Google Chrome suffers from an embarrassing \"mouse cursor capture\" bug. It is related to VirtualBox only, installations on real hardware work fine.</p><p>You can workaround the bug by switch <b>mouse integration off</b> in VirutalBox. We hope Google will resolve the issue soon.</p>"
+    # fi
+  fi
+
+  #   #check if booted from live media
+  #   # if [ -f "/etc/q4oslivemedia" ] ; then
+  #   if [ -n "$Q4OS_LIVE_MEDIA" ] ; then
+  #     set -- "--no-first-run" "$@"
+  #   fi
+
+  # #workaround google bug 456222, remove later
+  # q4hw-info --vboxguest
+  # if [ "$?" = "0" ] ; then
+  #   if [ "$CHROME_REAL_EXEC" = "/opt/google/chrome/google-chrome.q4diverted" ] ; then
+  #     set -- "--touch-devices=123" "$@"
+  #   fi
+  # fi
+
+  # #workaround for bug 643189, remove later
+  # set -- "--password-store=basic" "$@"
+
+  #disable zoom-fade effect when restoring a minimized window, or opening a new window, see https://stackoverflow.com/questions/43607461/google-chrome-disable-window-animations
+  set -- "--wm-window-animations-disabled" "$@"
+
+  #workaround: necessary to invoke trinity save-as dialog properly
+  export KDE_FULL_SESSION=true
+  unset KDE_SESSION_VERSION
+
+  #for chromium to find kfmclient binary, check and possibly remove later
+  if [ -z "$( echo $PATH | grep "/opt/trinity/bin" )" ] ; then
+    PATH=/opt/trinity/bin:$PATH
+  fi
+
+  if [ -f "$CHROME_REAL_EXEC" ] ; then
+    dash /opt/program_files/q4os-chrome/bin/check_gchr_version.sh &
+  fi
+fi

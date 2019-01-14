@@ -1,0 +1,25 @@
+[Icon Theme]
+Name=gchq4rith
+Comment=Chrome icon theme
+Hidden=true
+Directories=18x18/actions,29x29/actions,32x32/actions,58x58/actions
+
+[18x18/actions]
+Size=18
+Context=Actions
+Type=Threshold
+
+[29x29/actions]
+Size=29
+Context=Actions
+Type=Threshold
+
+[32x32/actions]
+Size=32
+Context=Actions
+Type=Threshold
+
+[58x58/actions]
+Size=58
+Context=Actions
+Type=Threshold

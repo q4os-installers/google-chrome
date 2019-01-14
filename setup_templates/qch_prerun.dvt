@@ -1,0 +1,50 @@
+#!/bin/sh
+
+if [ "$APPSETUP2_NONITERACTIVE" = "1" ] ; then
+  exit 0
+fi
+
+#----------------------------------------------------------------------------------------------
+# check for memory
+#----------------------------------------------------------------------------------------------
+MEMTOTAL=$( q4hw-info --memtotal )
+echo "Total memory: $MEMTOTAL"
+if [ "$MEMTOTAL" -lt "200" ] ; then
+  kdialog --title "Google Chrome" --caption "Warning - Unsupported hardware !" --icon "package_settings" --sorry "<p>Your computer is low in RAM memory !</p><p>Detected memory: $MEMTOTAL [MB]</p><p>Google Chrome could be unusable on your hardware.</p><p><br></p>"
+fi
+
+#----------------------------------------------------------------------------------------------
+# check q4os version
+#----------------------------------------------------------------------------------------------
+# Q4OSVERSION="$( get-q4os-version )"
+# if [ "$?" != "0" ] ; then
+#   echo "No Q4OS version, exiting."
+#   exit 0
+# fi
+# echo "Current Q4OS version: $Q4OSVERSION"
+# unset ISLESS
+# dpkg --compare-versions "$Q4OSVERSION" lt "0.5.18" && ISLESS="yes"
+# if [ -n "$ISLESS" ] ; then
+#   echo "Your Q4OS version is lesser then 0.5.18, exit."
+#   exit 0
+# fi
+
+#----------------------------------------------------------------------------------------------
+# check if the CPU supports SSE2. Otherwise the browser will just crash with a SIGILL. http://crbug.com/348761
+#----------------------------------------------------------------------------------------------
+q4hw-info --sse2
+RES1="$?"
+if [ "$RES1" = "100" ]; then
+  echo "q4hw-info doesn't support sse parameter, exiting ..."
+  exit
+fi
+if [ "$RES1" != "0" ]; then
+  kdialog --title "Google Chrome" --caption "Warning - Unsupported hardware !" --icon "package_settings" --sorry "<p>Your CPU doesn't support SSE2 instructions !</p><p>Google Chrome could be unusable on your hardware.</p><p><br></p>"
+fi
+
+#----------------------------------------------------------------------------------------------
+# warn on previous Google Chrome installation, remove this on segfault bug solving
+#----------------------------------------------------------------------------------------------
+# if [ -f "/etc/apt/sources.list.d/google-chrome.list" ] ; then
+#   kdialog --title "Google Chrome" --caption "Warning !" --icon "package_settings" --sorry "<p>Previous Google Chrome installation detected.</p><p>It is strongly recommended remove Google Chrome config files before starting new installation.</p><p><br></p>"
+# fi
