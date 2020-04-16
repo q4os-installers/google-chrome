@@ -31,6 +31,10 @@ case "$1" in
 
     upgrade)
       echo "Q4OS preinst message: Upgrading Google Chrome $2"
+      # if [ ! -f /etc/apt/trusted.gpg.d/trinity-keyring.gpg ] && [ -f /etc/apt/trusted.gpg ] ; then
+      #   #remove key xxxxxxxx (2000.01.01) from apt keyring
+      #   apt-key --keyring /etc/apt/trusted.gpg del XXXXXXXX 2> /dev/null || true
+      # fi
     ;;
 
     abort-upgrade)
