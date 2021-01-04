@@ -25,7 +25,10 @@ case "$1" in
 
       echo "Setting Google Chrome default web browser ..."
       ( /opt/trinity/bin/kwriteconfig --file '/etc/trinity/kdeglobals' --group 'General' --key 'BrowserApplication' 'google-chrome.desktop' ) && true
+      # ( /opt/trinity/bin/kwriteconfig --file '/etc/xdm/kdeglobals' --group 'General' --key 'BrowserApplication' 'google-chrome.desktop' ) && true
       ( chmod a+r /etc/trinity/kdeglobals ) && true
+      # ( chmod a+r /etc/xdm/kdeglobals ) && true
+
       ( rm -rf /.trinity ) && true #glitch fix: kwriteconfig creates this directory in rootfs
     ;;
 
