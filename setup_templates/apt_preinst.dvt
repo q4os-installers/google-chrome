@@ -22,14 +22,6 @@ case "$1" in
       ( dash /usr/share/apps/q4os_system/bin/ua_insert 'l=Google,a=stable' ) && true
       # echo "Inserting record 2 into unattended updates ..."
       # ( dash /usr/share/apps/q4os_system/bin/ua_insert 'q4os.org:xxxxxx' ) && true
-
-      echo "Setting Google Chrome default web browser ..."
-      ( /opt/trinity/bin/kwriteconfig --file '/etc/trinity/kdeglobals' --group 'General' --key 'BrowserApplication' 'google-chrome.desktop' ) && true
-      # ( /opt/trinity/bin/kwriteconfig --file '/etc/xdm/kdeglobals' --group 'General' --key 'BrowserApplication' 'google-chrome.desktop' ) && true
-      ( chmod a+r /etc/trinity/kdeglobals ) && true
-      # ( chmod a+r /etc/xdm/kdeglobals ) && true
-
-      ( rm -rf /.trinity ) && true #glitch fix: kwriteconfig creates this directory in rootfs
     ;;
 
     upgrade)
@@ -48,6 +40,13 @@ case "$1" in
       exit 0
     ;;
 esac
+
+set +e #do not exit this script on error
+
+#remove old keyrings
+# apt-key --keyring "/etc/apt/trusted.gpg" del "4CCA 1EAF 950C EE4A B839 76DC A040 830F 7FAC 5991"
+
+set -e
 
 #DEBHELPER#
 

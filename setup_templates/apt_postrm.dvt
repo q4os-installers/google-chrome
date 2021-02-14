@@ -23,10 +23,7 @@ if [ "$1" = remove ] ; then
 
   #remove chrome as default tde browser
   echo "Unsetting Google Chrome default web browser ..."
-  ( /opt/trinity/bin/kwriteconfig --file '/etc/trinity/kdeglobals' --group 'General' --key 'BrowserApplication' '' ) && true
-  # ( /opt/trinity/bin/kwriteconfig --file '/etc/xdm/kdeglobals' --group 'General' --key 'BrowserApplication' '' ) && true
-  ( chmod a+r /etc/trinity/kdeglobals ) && true
-  # ( chmod a+r /etc/xdm/kdeglobals ) && true
+  dash /usr/share/apps/q4os_system/bin/set_default_browser.sh "_find_"
 
 #   #remove menu and desktop entries
 #   echo "Removing menu and desktop entries ..."
