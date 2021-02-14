@@ -1,6 +1,7 @@
 #!/bin/sh -e
 
 if [ "$1" = remove ] ; then
+  set +e
 
   # remove records from unattended updates
   echo "Remove records from unattended updates"
@@ -30,4 +31,5 @@ if [ "$1" = remove ] ; then
 #   ( rm -f /usr/share/apps/q4os_system/q4os_menus_applications_merged/q4os-chrome_q4app.menu )  && true
 #   ( rm -f /opt/trinity/share/apps/kdesktop/Desktop/q4os-chrome_q4dsk.desktop )  && true
 
+  set -e
 fi

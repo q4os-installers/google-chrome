@@ -15,6 +15,7 @@ set -e
 
 case "$1" in
     configure)
+      set +e
 
       #we need app icons in "/usr/local/share/icons/hicolor/" to display chrome icons in other desktops, for ex. kde-plasma
       #inspired from the google-chrome-stable package - add icons to the system icons:
@@ -32,8 +33,6 @@ case "$1" in
       fi
       ( rm -f $SSTAMPF1 ) && true
       echo "Q4OS postinst message: This is new Google Chrome installation"
-
-      set -e
 
       echo "Setting Google Chrome default web browser ..."
       dash /usr/share/apps/q4os_system/bin/set_default_browser.sh "chrome"
