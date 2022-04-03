@@ -3,18 +3,9 @@
 if [ "$1" = remove ] ; then
   set +e
 
-  # remove records from unattended updates
+  #remove records from unattended updates
   echo "Remove records from unattended updates"
-  ( sed -i '/Google/d' /etc/apt/apt.conf.d/50unattended-upgrades )  && true
-
-  # remove possible google-chrome repos
-  echo "Remove possible google-chrome repos"
-  rm -f /etc/apt/sources.list.d/google-chrome.list #it will be refreshed by google-chrome package using cron.daily, if it is not uninstalled too
-#   rm -f /etc/apt/sources.list.d/80_google-chrome.list
-
-  # enable chrome to re-create repos file in sources.list.d after new install
-  echo "Enable chrome to re-create repos file in sources.list.d after new install"
-  ( sed -i -e 's/[[:space:]]*repo_add_once=.*/repo_add_once="true"/' /etc/default/google-chrome )  && true
+  sed -i '/Google/d' /etc/apt/apt.conf.d/50unattended-upgrades
 
   #remove diversions
   echo "Remove diversions"
@@ -22,7 +13,7 @@ if [ "$1" = remove ] ; then
   dpkg-divert --rename --remove /opt/google/chrome-beta/google-chrome-beta
   dpkg-divert --rename --remove /opt/google/chrome-unstable/google-chrome-unstable
 
-#   #remove chrome as default tde browser
+#   #remove chrome as default tde browser - todo: need to run after chrome uninstall
 #   echo "Unsetting Google Chrome default web browser ..."
 #   dash /usr/share/apps/q4os_system/bin/set_default_browser.sh "_find_"
 

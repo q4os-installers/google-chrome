@@ -9,11 +9,8 @@ case "$1" in
       echo "Q4OS preinst message: This is new Google Chrome installation"
       touch "$SSTAMPF1"
 
-      echo "Removing previous Google Chrome repositories ..."
-      rm -f /etc/apt/sources.list.d/google-chrome*.list
-
       #executables diversion - tweaks google chrome binary laucher to be run with proper/q4os environment variables
-      echo "Diverting chrome executables"
+      echo "Diverting chrome executables ..."
       dpkg-divert --divert /opt/google/chrome/google-chrome.q4diverted --rename /opt/google/chrome/google-chrome
       dpkg-divert --divert /opt/google/chrome-beta/google-chrome-beta.q4diverted --rename /opt/google/chrome-beta/google-chrome-beta
       dpkg-divert --divert /opt/google/chrome-unstable/google-chrome-unstable.q4diverted --rename /opt/google/chrome-unstable/google-chrome-unstable
