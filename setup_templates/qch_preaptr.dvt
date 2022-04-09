@@ -6,3 +6,4 @@ if ! dash /usr/share/apps/q4os_system/bin/print_package_version.sh "google-chrom
   echo "Removing possible google-chrome repos ..."
   rm -f /etc/apt/sources.list.d/google-chrome*.list
 fi
+#todo: this code could be removed as soon as conflicting repositories handled by qsinst utility

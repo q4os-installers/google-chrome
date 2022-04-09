@@ -35,9 +35,8 @@ case "$1" in
       echo "Q4OS postinst message: This is new Google Chrome installation"
 
       #configure chrome to re-create repos file in sources.list.d after new install
-      #note: sources.list are refreshed by google-chrome package using cron.daily
-      #if repo_add_once="true", cron.daily/google-chrome forcibly re-enable google chrome repository in sources.list.d and set "repo_add_once" to false
-      echo "Enabling chrome to re-create repositories ..."
+      #if repo_add_once="true", cron.daily/google-chrome forcibly create google chrome repository in sources.list.d, then set "repo_add_once" to false
+      echo "Enabling Chrome to re-create repositories ..."
       sed -i -e 's/[[:space:]]*repo_add_once=.*/repo_add_once="true"/' /etc/default/google-chrome
       # sed -i -e 's/[[:space:]]*repo_reenable_on_distupgrade=.*/repo_reenable_on_distupgrade="false"/' /etc/default/google-chrome
 
