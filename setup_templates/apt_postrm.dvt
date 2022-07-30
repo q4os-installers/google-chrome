@@ -13,10 +13,6 @@ if [ "$1" = remove ] ; then
   dpkg-divert --rename --remove /opt/google/chrome-beta/google-chrome-beta
   dpkg-divert --rename --remove /opt/google/chrome-unstable/google-chrome-unstable
 
-#   #remove chrome as default tde browser - todo: need to run after chrome uninstall
-#   echo "Unsetting Google Chrome default web browser ..."
-#   dash /usr/share/apps/q4os_system/bin/set_default_browser.sh "_find_"
-
 #   #remove menu and desktop entries
 #   echo "Removing menu and desktop entries ..."
 #   ( rm -f /usr/share/apps/q4os_system/q4os_menus_applications_merged/q4os-chrome_q4app.menu )  && true
