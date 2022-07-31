@@ -4,7 +4,7 @@ case "$1" in
     remove|purge)
     set +e
     cp /opt/program_files/q4os-chrome/bin/post_gchr_remove.sh /tmp/
-    ( dash /tmp/post_gchr_remove.sh 2>&1 | tee /tmp/post_gchr_remove.log ) &
+    ( ( dash /tmp/post_gchr_remove.sh 2>&1 ) > /tmp/post_gchr_remove.log ) &
     set -e
     ;;
 esac
