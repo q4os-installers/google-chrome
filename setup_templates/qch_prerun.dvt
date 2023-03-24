@@ -9,7 +9,7 @@ fi
 #----------------------------------------------------------------------------------------------
 MEMTOTAL=$( q4hw-info --memtotal )
 echo "Total memory: $MEMTOTAL"
-if [ "$MEMTOTAL" -lt "850" ] ; then
+if [ "$MEMTOTAL" -lt "1200" ] ; then
   kdialog --title "Google Chrome" --caption "Warning - Unsupported hardware !" --icon "package_settings" --sorry "<p>Your computer is low in RAM memory !</p><p>Detected memory: $MEMTOTAL [MB]</p><p>Google Chrome could be unusable on your hardware.</p><p><br></p>"
 fi
 

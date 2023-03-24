@@ -1,9 +1,10 @@
 #!/bin/sh
 
 #remove possible google-chrome repos, if chrome not installed
-#for setup to not conflicts temporary chrome sources list
+#for setup not to conflict temporary chrome sources list
 if ! dash /usr/share/apps/q4os_system/bin/print_package_version.sh "google-chrome-stable" 1>/dev/null ; then
-  echo "Removing possible google-chrome repos ..."
+  echo "Removing possible conflicting repos ..."
   rm -f /etc/apt/sources.list.d/google-chrome*.list
+  rm -f /etc/apt/sources.list.d/*q4os-chrome*.list
 fi
 #todo: this code could be removed as soon as conflicting repositories handled by qsinst utility
