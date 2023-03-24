@@ -1,0 +1,2 @@
+deb [trusted=yes arch=amd64] http://q4os.org/qextrepo bookworm-chrome-cn main
+deb [signed-by=/usr/share/keyrings/q4a-google_chrome.gpg trusted=yes arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main

@@ -17,6 +17,35 @@ case "$1" in
     configure)
       set +e
 
+      REPOFL1="/etc/apt/sources.list.d/50_q4os-chrome.list"
+      if [ ! -f "$REPOFL1" ] || [ -n "$( head -n1 $REPOFL1 2>/dev/null | grep '##_not_configured_yet_##' )" ] ; then
+        # echo "Q4OS-Chrome seems not to be configured, going to do so ..."
+        QDSTRA="$( dash /usr/share/apps/q4os_system/bin/print_qaptdistr.sh )"
+        echo "Distro [$QDSTRA], adding repositories, configuring ..."
+        echo '###q4os-chrome repositories' > "$REPOFL1"
+        if [ "$QDSTRA" = "buster" ] || [ "$QDSTRA" = "raspbian10" ] ; then
+          echo 'deb [arch=amd64] http://q4os.org/qextrepo buster-chrome-cn main' >> "$REPOFL1"
+        elif [ "$QDSTRA" = "bullseye" ] || [ "$QDSTRA" = "raspbian11" ] ; then
+          echo 'deb [arch=amd64] http://q4os.org/qextrepo bullseye-chrome-cn main' >> "$REPOFL1"
+        elif [ "$QDSTRA" = "bookworm" ] || [ "$QDSTRA" = "raspbian12" ] ; then
+          echo 'deb [arch=amd64] http://q4os.org/qextrepo bookworm-chrome-cn main' >> "$REPOFL1"
+        elif [ "$QDSTRA" = "focal" ] ; then
+          echo 'deb [arch=amd64] http://q4os.org/qextrepo focal-chrome-cn main' >> "$REPOFL1"
+        elif [ "$QDSTRA" = "jammy" ] ; then
+          echo 'deb [arch=amd64] http://q4os.org/qextrepo jammy-chrome-cn main' >> "$REPOFL1"
+        else
+          echo 'deb [arch=amd64] http://q4os.org/qextrepo bookworm-chrome-cn main' >> "$REPOFL1"
+        fi
+      fi
+
+      SSTAMPF1="/var/lib/dpkg/.q4os-chrome_install_aptstmp.stamp"
+      if [ ! -f $SSTAMPF1 ] ; then
+         echo "Ok, looks like an upgrade, exiting postinst now ...."
+         exit 0
+      fi
+      rm -f $SSTAMPF1
+      echo "Q4OS postinst message: This is new Google Chrome installation"
+
       #we need app icons in "/usr/local/share/icons/hicolor/" to display chrome icons in other desktops, for ex. kde-plasma
       #inspired from the google-chrome-stable package - add icons to the system icons:
       for ICONSIZE in 16 22 24 32 48 64 128 256 ; do
@@ -25,14 +54,6 @@ case "$1" in
         # echo "Copying >> /opt/program_files/q4os-chrome/icons_logo/product_logo_${ICONSIZE}.png >> $DESTDIR1/google-chrome.png"
         cp "/opt/program_files/q4os-chrome/icons_logo/product_logo_${ICONSIZE}.png" "$DESTDIR1/google-chrome.png"
       done
-
-      SSTAMPF1="/var/lib/dpkg/.q4os-chrome_install_aptstmp.stamp"
-      if [ ! -f $SSTAMPF1 ] ; then
-         echo "ok, looks like an upgrade, exiting postinst now ...."
-         exit 0
-      fi
-      rm -f $SSTAMPF1
-      echo "Q4OS postinst message: This is new Google Chrome installation"
 
       #configure chrome to re-create repos file in sources.list.d after new install
       #if repo_add_once="true", cron.daily/google-chrome forcibly create google chrome repository in sources.list.d, then set "repo_add_once" to false
