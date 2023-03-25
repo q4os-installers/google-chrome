@@ -1,2 +1,2 @@
-deb [ trusted=yes arch=amd64 ] http://q4os.org/qextrepo buster-chrome-cn main
-deb [ trusted=yes arch=amd64 ] http://dl.google.com/linux/chrome/deb/ stable main
+deb [trusted=yes arch=amd64] http://q4os.org/qextrepo buster-chrome-cn main
+deb [trusted=yes arch=amd64 signed-by=/usr/share/keyrings/q4a-google_chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main
