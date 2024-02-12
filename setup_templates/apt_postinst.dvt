@@ -30,9 +30,11 @@ case "$1" in
         elif [ "$QDSTRA" = "bookworm" ] || [ "$QDSTRA" = "raspbian12" ] ; then
           echo 'deb [arch=amd64] http://q4os.org/qextrepo bookworm-chrome-cn main' >> "$REPOFL1"
         elif [ "$QDSTRA" = "focal" ] ; then
-          echo 'deb [arch=amd64] http://qubuntu.org/quarkext focal-chrome-cn main' >> "$REPOFL1"
+          echo 'deb [arch=amd64] http://q4os.org/quarkext focal-chrome-cn main' >> "$REPOFL1"
+          echo '##deb [arch=amd64] http://quarkos.org/quarkext focal-chrome-cn main' >> "$REPOFL1"
         elif [ "$QDSTRA" = "jammy" ] ; then
-          echo 'deb [arch=amd64] http://qubuntu.org/quarkext jammy-chrome-cn main' >> "$REPOFL1"
+          echo 'deb [arch=amd64] http://q4os.org/quarkext jammy-chrome-cn main' >> "$REPOFL1"
+          echo '##deb [arch=amd64] http://quarkos.org/quarkext jammy-chrome-cn main' >> "$REPOFL1"
         else
           echo 'deb [arch=amd64] http://q4os.org/qextrepo bookworm-chrome-cn main' >> "$REPOFL1"
         fi
