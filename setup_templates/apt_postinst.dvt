@@ -25,6 +25,8 @@ case "$1" in
         echo '###q4os-chrome repositories' > "$REPOFL1"
         if [ "$QDSTRA" = "buster" ] || [ "$QDSTRA" = "raspbian10" ] ; then
           echo 'deb [arch=amd64] http://q4os.org/qextrepo buster-chrome-cn main' >> "$REPOFL1"
+        elif [ "$QDSTRA" = "bullseye" ] || [ "$QDSTRA" = "raspbian11" ] ; then
+          echo 'deb [arch=amd64] http://q4os.org/qextrepo bullseye-chrome-cn main' >> "$REPOFL1"
         elif [ "$QDSTRA" = "bookworm" ] || [ "$QDSTRA" = "raspbian12" ] ; then
           echo 'deb [arch=amd64] http://q4os.org/qextrepo bookworm-chrome-cn main' >> "$REPOFL1"
         elif [ "$QDSTRA" = "focal" ] ; then
