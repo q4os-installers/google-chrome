@@ -6,5 +6,8 @@
   },
   "download": {
      "prompt_for_download": true
+  },
+  "extensions":{
+     "theme":{"id":"","system_theme":1}
   }
 }
