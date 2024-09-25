@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+# See debhelper(7) (uncomment to enable).
+# Output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+
+%:
+	dh $@
+
+
+override_dh_install:
+	dh_install
+	rsync -a filesystem/* debian/q4os-chrome/
+	sh /opt/program_files/q4os-devpack/appsetup/dh_modify1_deb.sh debian/qinstaller/installer.cfg debian/q4os-chrome
+
+override_dh_link:
+
+override_dh_installdeb:
+
+override_dh_builddeb:
+	# rm -rf ../.zout/ && mkdir -p ../.zout/
+	dh_builddeb #--destdir=../.zout/
+	sh /opt/program_files/q4os-devpack/appsetup/dh_build_qinstaller.sh debian/qinstaller/installer.cfg
+	# dh_clean --dirs-only
+	# rm -r debian/.debhelper
+	# rm debian/q4os-chrome.substvars
+	# rm debian/q4os-chrome.debhelper.log
+	# rm debian/files
+	rm -rf ../.zout/ && mkdir ../.zout/ && cp ../*.deb ../*.qsi ../*.esh ../.zout/
