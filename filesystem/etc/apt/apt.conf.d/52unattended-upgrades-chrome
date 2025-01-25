@@ -1,0 +1,8 @@
+Unattended-Upgrade::Origins-Pattern {
+ "o=q4os.org,n=${distro_codename}-chrome-cn";
+ "l=Google,a=stable";
+};
+
+//?or
+//Unattended-Upgrade::Allowed-Origins:: "??q4os.org:${distro_codename}-chrome-cn";
+//Unattended-Upgrade::Allowed-Origins:: "??Google:${distro_codename}";

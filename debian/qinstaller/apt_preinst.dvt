@@ -15,8 +15,8 @@ case "$1" in
       dpkg-divert --divert /opt/google/chrome-beta/google-chrome-beta.q4diverted --rename /opt/google/chrome-beta/google-chrome-beta
       dpkg-divert --divert /opt/google/chrome-unstable/google-chrome-unstable.q4diverted --rename /opt/google/chrome-unstable/google-chrome-unstable
 
-      echo "Inserting record 1 into unattended upgrades ..."
-      ( dash /usr/share/apps/q4os_system/bin/ua_insert 'l=Google,a=stable' ) && true
+      # echo "Inserting record 1 into unattended upgrades ..."
+      # ( dash /usr/share/apps/q4os_system/bin/ua_insert 'l=Google,a=stable' ) && true
       # echo "Inserting record 2 into unattended updates ..."
       # ( dash /usr/share/apps/q4os_system/bin/ua_insert 'q4os.org:xxxxxx' ) && true
     ;;
