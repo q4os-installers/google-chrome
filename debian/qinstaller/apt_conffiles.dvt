@@ -1,1 +1,2 @@
 /etc/apt/sources.list.d/50_q4os-chrome.list
+/etc/apt/apt.conf.d/52unattended-upgrades-chrome
