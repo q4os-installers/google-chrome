@@ -1,7 +1,7 @@
 #***q4os*setup*config*header*do*not*delete*it***#
 
 # TEMPLATES_DIR_0="$TEMPLATESDIR0"
-TEMPLATES_DIR="."
+TEMPLATES_DIR="qinstaller_templates"
 
 PK_NAME="q4os-chrome"
 APPNAME_DESC="Google Chrome"
@@ -19,13 +19,15 @@ UNINST_ADPCKS="google-chrome-stable"
 # APP_REPO="deb [arch=amd64] http://q4os.org/qextrepo buster-chrome-cn main"
 
 #-.qsi entries
-PK_VERS="4.9-a1"
+PK_VERS="4.10-a1"
 Q4VER_MIN="4.0"
 # Q4VER_MAX=""
-DSTR_EDTN="bookworm;bullseye;jammy;noble"
+DSTR_BASE="debian;ubuntu"
+DSTR_EDTN="trixie;bookworm;bullseye;jammy;noble"
 QS_ARCHES="amd64"
-# INCLUDE_DEB="1"
 # CHK_INET="1"
 # SETUP_TYPE="2"
 # INST_DEBS="q4os-chrome"
+# INCLUDE_DHDEB="1"
+CREATE_ESH="1"
 # OUT_DIR="."
