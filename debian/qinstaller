@@ -16,7 +16,6 @@ APPLNK_ENTRY="0"
 # APP_ICON="google-chrome"
 # APP_LINK="google-chrome-stable"
 UNINST_ADPCKS="google-chrome-stable"
-# APP_REPO="deb [arch=amd64] http://q4os.org/qextrepo buster-chrome-cn main"
 
 #-.qsi entries
 PK_VERS="4.10-a1"
