@@ -40,6 +40,19 @@ case "$1" in
         fi
       fi
 
+      echo "Copying master preferences ..."
+      mkdir -p /opt/google/chrome /opt/google/chrome-beta /opt/google/chrome-unstable
+      rm -f /opt/google/chrome/master_preferences /opt/google/chrome-beta/master_preferences /opt/google/chrome-unstable/master_preferences
+      if [ "$QDSK_SESSION" = "trinity" ] ; then
+        cp /opt/program_files/q4os-chrome/share/master_preferences.default.tde /opt/google/chrome/master_preferences
+        cp /opt/program_files/q4os-chrome/share/master_preferences.default.tde /opt/google/chrome-beta/master_preferences
+        cp /opt/program_files/q4os-chrome/share/master_preferences.default.tde /opt/google/chrome-unstable/master_preferences
+      else
+        cp /opt/program_files/q4os-chrome/share/master_preferences.default.general /opt/google/chrome/master_preferences
+        cp /opt/program_files/q4os-chrome/share/master_preferences.default.general /opt/google/chrome-beta/master_preferences
+        cp /opt/program_files/q4os-chrome/share/master_preferences.default.general /opt/google/chrome-unstable/master_preferences
+      fi
+
       SSTAMPF1="/var/lib/dpkg/.q4os-chrome_install_aptstmp.stamp"
       if [ ! -f $SSTAMPF1 ] ; then
          echo "Ok, looks like an upgrade, exiting postinst now ...."
