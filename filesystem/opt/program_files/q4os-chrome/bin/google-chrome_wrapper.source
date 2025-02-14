@@ -31,7 +31,7 @@ if [ "$QDSK_SESSION" = "trinity" ] ; then
 
     # q4hw-info --vboxguest
     # if [ "$?" = "0" ] ; then
-    #   kdialog --title "Google Chrome" --caption "Bug warning" --icon "google-chrome" --msgbox "<p>Google Chrome suffers from an embarrassing \"mouse cursor capture\" bug. It is related to VirtualBox only, installations on real hardware work fine.</p><p>You can workaround the bug by switch <b>mouse integration off</b> in VirutalBox. We hope Google will resolve the issue soon.</p>"
+    #   /usr/lib/kdialogwr/kdialog --title "Google Chrome" --caption "Bug warning" --icon "google-chrome" --msgbox "<p>Google Chrome suffers from an embarrassing \"mouse cursor capture\" bug. It is related to VirtualBox only, installations on real hardware work fine.</p><p>You can workaround the bug by switch <b>mouse integration off</b> in VirutalBox. We hope Google will resolve the issue soon.</p>"
     # fi
   fi
 

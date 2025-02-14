@@ -9,8 +9,8 @@ fi
 #----------------------------------------------------------------------------------------------
 MEMTOTAL=$( q4hw-info --memtotal )
 echo "Total memory: $MEMTOTAL"
-if [ "$MEMTOTAL" -lt "1200" ] ; then
-  kdialog --title "Google Chrome" --caption "Warning - Unsupported hardware !" --icon "package_settings" --sorry "<p>Your computer is low in RAM memory !</p><p>Detected memory: $MEMTOTAL [MB]</p><p>Google Chrome could be unusable on your hardware.</p><p><br></p>"
+if [ "$MEMTOTAL" -lt "2000" ] ; then
+  /usr/lib/kdialogwr/kdialog --title "Google Chrome" --caption "Warning - Unsupported hardware !" --icon "package_settings" --sorry "<p>Your computer is low in RAM memory !</p><p>Detected memory: $MEMTOTAL [MB]</p><p>Google Chrome could be unusable on your hardware.</p><p><br></p>"
 fi
 
 #----------------------------------------------------------------------------------------------
@@ -39,12 +39,12 @@ if [ "$RES1" = "100" ]; then
   exit
 fi
 if [ "$RES1" != "0" ]; then
-  kdialog --title "Google Chrome" --caption "Warning - Unsupported hardware !" --icon "package_settings" --sorry "<p>Your CPU doesn't support SSE2 instructions !</p><p>Google Chrome could be unusable on your hardware.</p><p><br></p>"
+  /usr/lib/kdialogwr/kdialog --title "Google Chrome" --caption "Warning - Unsupported hardware !" --icon "package_settings" --sorry "<p>Your CPU doesn't support SSE2 instructions !</p><p>Google Chrome could be unusable on your hardware.</p><p><br></p>"
 fi
 
 #----------------------------------------------------------------------------------------------
 # warn on previous Google Chrome installation, remove this on segfault bug solving
 #----------------------------------------------------------------------------------------------
 # if [ -f "/etc/apt/sources.list.d/google-chrome.list" ] ; then
-#   kdialog --title "Google Chrome" --caption "Warning !" --icon "package_settings" --sorry "<p>Previous Google Chrome installation detected.</p><p>It is strongly recommended remove Google Chrome config files before starting new installation.</p><p><br></p>"
+#   /usr/lib/kdialogwr/kdialog --title "Google Chrome" --caption "Warning !" --icon "package_settings" --sorry "<p>Previous Google Chrome installation detected.</p><p>It is strongly recommended remove Google Chrome config files before starting new installation.</p><p><br></p>"
 # fi
