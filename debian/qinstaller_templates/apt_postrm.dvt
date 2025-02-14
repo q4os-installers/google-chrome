@@ -3,9 +3,9 @@
 if [ "$1" = "remove" ] ; then
   set +e
 
-  #remove records from unattended updates
-  echo "Remove records from unattended updates"
-  sed -i '/Google/d' /etc/apt/apt.conf.d/50unattended-upgrades
+#   #remove records from unattended updates
+#   echo "Remove records from unattended updates"
+#   sed -i '/Google/d' /etc/apt/apt.conf.d/50unattended-upgrades
 
   #remove diversions
   echo "Remove diversions"
