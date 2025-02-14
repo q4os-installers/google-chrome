@@ -20,6 +20,7 @@ if [ "$1" = "remove" ] ; then
 
   echo "Remove config files"
   rm -f /etc/apt/sources.list.d/*q4os-chrome*.list
+  rm -f /etc/apt/apt.conf.d/52unattended-upgrades-chrome
 
   set -e
 fi
