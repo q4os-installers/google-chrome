@@ -41,6 +41,7 @@ case "$1" in
       fi
 
       echo "Copying master preferences ..."
+      #todo: check to place master preferences in /etc/opt/chrome/ or /etc/default/chrome/ ??
       mkdir -p /opt/google/chrome /opt/google/chrome-beta /opt/google/chrome-unstable
       rm -f /opt/google/chrome/master_preferences /opt/google/chrome-beta/master_preferences /opt/google/chrome-unstable/master_preferences
       if [ "$QDSK_SESSION" = "trinity" ] ; then
