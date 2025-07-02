@@ -2,8 +2,10 @@ q4os-chrome (4.11-a1) UNRELEASED; urgency=medium
 
   * Remove master_preferences file on package removal
   * Minor comment
+  * Add repository signing for Trixie
+  * Increase version
 
- -- Q4OS Team <devteam@q4os.org>  Wed, 02 Jul 2025 14:44:24 +0200
+ -- Q4OS Team <devteam@q4os.org>  Wed, 02 Jul 2025 15:56:07 +0200
 
 q4os-chrome (4.10-a1) UNRELEASED; urgency=medium
 
