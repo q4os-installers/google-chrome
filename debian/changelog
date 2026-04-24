@@ -1,3 +1,9 @@
+q4os-chrome (4.12-a1) UNRELEASED; urgency=medium
+
+  * Add support for Resolute and Forky
+
+ -- Q4OS Team <devteam@q4os.org>  Fri, 24 Apr 2026 12:00:13 +0200
+
 q4os-chrome (4.11-a1) UNRELEASED; urgency=medium
 
   * Remove master_preferences file on package removal
