@@ -18,11 +18,11 @@ APPLNK_ENTRY="0"
 UNINST_ADPCKS="google-chrome-stable"
 
 #-.qsi entries
-PK_VERS="4.11-a1"
+PK_VERS="4.12-a1"
 Q4VER_MIN="4.0"
 # Q4VER_MAX=""
 DSTR_BASE="debian;ubuntu"
-DSTR_EDTN="trixie;bookworm;bullseye;jammy;noble"
+DSTR_EDTN="forky;trixie;bookworm;bullseye;resolute;noble;jammy"
 QS_ARCHES="amd64"
 # CHK_INET="1"
 # SETUP_TYPE="2"

@@ -19,6 +19,7 @@ if [ "$1" = "remove" ] ; then
 #   ( rm -f /opt/trinity/share/apps/kdesktop/Desktop/q4os-chrome_q4dsk.desktop )  && true
 
   echo "Remove config files"
+  rm -f /etc/apt/sources.list.d/*q4os-chrome*.sources
   rm -f /etc/apt/sources.list.d/*q4os-chrome*.list
   rm -f /etc/apt/apt.conf.d/52unattended-upgrades-chrome
   rm -f /opt/google/chrome/master_preferences

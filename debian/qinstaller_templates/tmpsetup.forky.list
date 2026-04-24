@@ -1,0 +1,2 @@
+deb [trusted=yes arch=amd64 signed-by=/usr/share/keyrings/q4a-q4os.gpg] https://q4os.org/qexarepo/chrome forky-chrome-cn main
+deb [trusted=yes arch=amd64 signed-by=/usr/share/keyrings/q4a-google_chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main
