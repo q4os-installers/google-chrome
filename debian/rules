@@ -12,6 +12,7 @@
 override_dh_install:
 	dh_install
 	rsync -a filesystem/* debian/q4os-chrome/
+	rm debian/q4os-chrome/etc/apt/sources.list.d/* #remove this line and files as well later
 	dh_modify_debdir
 
 override_dh_link:

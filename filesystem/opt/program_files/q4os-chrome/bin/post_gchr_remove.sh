@@ -13,6 +13,7 @@ fi
 #next commands need to be run after google-chrome-stable uninstall
 
 echo "Removing possible google-chrome repos ..."
+rm -f /etc/apt/sources.list.d/google-chrome*.sources
 rm -f /etc/apt/sources.list.d/google-chrome*.list
 
 #remove chrome as default tde browser - todo: need to run after chrome uninstall

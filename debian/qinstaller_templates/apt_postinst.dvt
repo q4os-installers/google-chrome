@@ -17,10 +17,15 @@ case "$1" in
     configure)
       set +e
 
-      REPOFL1="/etc/apt/sources.list.d/50_q4os-chrome.list"
+      QDSTRA="$( dash /usr/share/apps/q4os_system/bin/print_qaptdistr.sh )"
+      if [ "$QDSTRA" = "bullseye" ] || [ "$QDSTRA" = "bookworm" ] || [ "$QDSTRA" = "trixie" ] || [ "$QDSTRA" = "jammy" ] || [ "$QDSTRA" = "noble" ] ; then
+        REPOFL1="/etc/apt/sources.list.d/50_q4os-chrome.list"
+      else
+        rm -f /etc/apt/sources.list.d/50_q4os-chrome.list
+        REPOFL1="/etc/apt/sources.list.d/50_q4os-chrome.sources"
+      fi
       if [ ! -f "$REPOFL1" ] || [ -n "$( head -n1 $REPOFL1 2>/dev/null | grep '##_not_configured_yet_##' )" ] ; then
         # echo "Q4OS-Chrome seems not to be configured, going to do so ..."
-        QDSTRA="$( dash /usr/share/apps/q4os_system/bin/print_qaptdistr.sh )"
         echo "Distro [$QDSTRA], adding repositories, configuring ..."
         echo '###q4os-chrome repositories' > "$REPOFL1"
         if [ "$QDSTRA" = "bullseye" ] ; then
@@ -29,14 +34,43 @@ case "$1" in
           echo 'deb [arch=amd64] http://q4os.org/qextrepo bookworm-chrome-cn main' >> "$REPOFL1"
         elif [ "$QDSTRA" = "trixie" ] ; then
           echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/q4a-q4os.gpg] http://q4os.org/qexarepo/chrome trixie-chrome-cn main' >> "$REPOFL1"
+        elif [ "$QDSTRA" = "forky" ] ; then
+          cat >> "$REPOFL1" <<EOF
+Enabled: yes
+Types: deb
+Architectures: amd64
+URIs: https://q4os.org/qexarepo/chrome
+Suites: $QDSTRA-chrome-cn
+Components: main
+Signed-By: /usr/share/keyrings/q4a-q4os.gpg
+EOF
         elif [ "$QDSTRA" = "jammy" ] ; then
           echo 'deb [arch=amd64] http://q4os.org/quarkext jammy-chrome-cn main' >> "$REPOFL1"
           echo '##deb [arch=amd64] http://quarkos.org/quarkext jammy-chrome-cn main' >> "$REPOFL1"
         elif [ "$QDSTRA" = "noble" ] ; then
           echo 'deb [arch=amd64] http://q4os.org/quarkext noble-chrome-cn main' >> "$REPOFL1"
           echo '##deb [arch=amd64] http://quarkos.org/quarkext noble-chrome-cn main' >> "$REPOFL1"
+        elif [ "$QDSTRA" = "resolute" ] ; then
+          cat >> "$REPOFL1" <<EOF
+Enabled: yes
+Types: deb
+Architectures: amd64
+URIs: https://q4os.org/quarkexa/chrome
+##_URIs: https://quarkos.org/quarkexa/chrome
+Suites: $QDSTRA-chrome-cn
+Components: main
+Signed-By: /usr/share/keyrings/q4a-q4os.gpg
+EOF
         else
-          echo '##deb [arch=amd64 signed-by=/usr/share/keyrings/q4a-q4os.gpg] http://q4os.org/qexarepo/chrome <distroname>-chrome-cn main' >> "$REPOFL1"
+          cat >> "$REPOFL1" <<EOF
+Enabled: no
+Types: deb
+Architectures: amd64
+URIs: https://q4os.org/qexarepo/chrome
+Suites: <distroname>-chrome-cn
+Components: main
+Signed-By: /usr/share/keyrings/q4a-q4os.gpg
+EOF
         fi
       fi
 
