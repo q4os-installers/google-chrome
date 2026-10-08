@@ -1,3 +1,12 @@
+q4os-chrome (4.12-a2) UNRELEASED; urgency=medium
+
+  * Chrome version check: read and write its stamp through q4os-base's
+    kreadcfgpm/kwrtcfgpm, so the "updated" popup also works without Trinity
+    (bare kreadconfig/kwriteconfig exist only in Trinity); Depends q4os-base
+    (>= 4.31.4-a1), the first version with these wrappers.
+
+ -- Q4OS Team <devteam@q4os.org>  Tue, 06 Oct 2026 23:30:00 +0200
+
 q4os-chrome (4.12-a1) UNRELEASED; urgency=medium
 
   * Add support for Resolute and Forky

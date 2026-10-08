@@ -5,7 +5,7 @@ if [ -f "$STAMPFL1" ] ; then
   exit
 fi
 touch $STAMPFL1
-LAST_VER="$( kreadconfig --file "$CHROME_CFGDIR/goochrq4rc" --group "Misc" --key "LastVersion" )"
+LAST_VER="$( kreadcfgpm --file "$CHROME_CFGDIR/goochrq4rc" --group "Misc" --key "LastVersion" )"
 if [ "$LAST_VER" = "" ] ; then
   sleep 120 #bypass chrome initialization during the first run
 else
@@ -13,7 +13,7 @@ else
 fi
 CURR_VER="$( $CHROME_REAL_EXEC --version )"
 if [ "$LAST_VER" != "$CURR_VER" ] ; then
-  kwriteconfig --file "$CHROME_CFGDIR/goochrq4rc" --group "Misc" --key "LastVersion" "$CURR_VER"
+  kwrtcfgpm --file "$CHROME_CFGDIR/goochrq4rc" --group "Misc" --key "LastVersion" "$CURR_VER"
   if [ "$LAST_VER" != "" ] ; then
     /usr/lib/kdialogwr/kdialog --title "" --caption "" --icon "google-chrome" --passivepopup "<font size=4><p>$LAST_VER has been updated since last run.</p><p>New version: <b>$CURR_VER</b></p></font>" 20 &
   fi

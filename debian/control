@@ -8,7 +8,7 @@ Standards-Version: 3.8.4
 Package: q4os-chrome
 Architecture: amd64
 Pre-Depends: google-chrome-stable
-Depends: q4os-desktop (>= 4.0)
+Depends: q4os-desktop (>= 4.0), q4os-base (>= 4.31.4-a1)
 Recommends: libexif12, dbus-x11, fonts-symbola
 Conflicts: google-chrome-q4
 Provides: q4os-chrome
